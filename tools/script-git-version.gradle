@@ -1,0 +1,17 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.ajoberstar:grgit:1.5.0'
+    }
+}
+
+ext {
+    git = org.ajoberstar.grgit.Grgit.open(currentDir: projectDir)
+    gitRevision = "${git.head().abbreviatedId}"
+}
+
+task printVersion() {
+    println("Git Revision: $gitRevision")
+}

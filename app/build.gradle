@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "${rootDir}/tools/script-git-version.gradle"
+
+def versionMajor = 0
+def versionMinor = 0
+def versionPatch = 1
+def versionBuild = 0
+
+android {
+
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        applicationId "ru.annin.truckmonitor"
+        minSdkVersion 19
+        targetSdkVersion 25
+
+        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+        versionName "${versionMajor}.${versionMinor}" + (versionPatch == 0 ? "" : ".${versionPatch}" + "-${gitRevision}")
+
+        resConfigs "en", "ru", "zh"
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    productFlavors {
+        dev {
+            minSdkVersion 21
+            buildConfigField "String", "API_BASE_URL", '"http://192.168.1.2:8080"'
+        }
+    }
+
+    buildTypes {
+        debug {
+            versionNameSuffix "D"
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
+    applicationVariants.all { variant ->
+        File outDir = file("${rootDir}/out/${variant.buildType.name}")
+        if (!outDir.exists()) {
+            outDir.mkdirs()
+        }
+        variant.assemble.doLast {
+            variant.outputs.each { output ->
+                File apkFile = output.outputFile
+                copy {
+                    from apkFile
+                    into outDir
+                    rename { fileName -> "TruckMonitor_v${variant.versionName}.${variant.versionCode}-${variant.flavorName}.apk" }
+                }
+            }
+        }
+    }
+}
+
+dependencies  {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Android Support Library
+    compile 'com.android.support:design:25.3.1'
+
+    // Kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    // Test
+    testCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support:support-annotations:25.3.1'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}
