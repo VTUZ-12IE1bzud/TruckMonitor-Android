@@ -2,6 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ru.annin.truckmonitor">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".TruckMonitorApplication"
         android:allowBackup="false"

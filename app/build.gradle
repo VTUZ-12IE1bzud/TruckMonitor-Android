@@ -22,7 +22,8 @@ android {
 
         resConfigs "en", "ru", "zh"
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
     }
 
     productFlavors {
@@ -64,6 +65,11 @@ android {
             }
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
 }
 
 dependencies  {
@@ -71,12 +77,27 @@ dependencies  {
 
     // Android Support Library
     compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:multidex:1.0.1'
 
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
+    // Rest Api
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.7.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
+    compile 'com.squareup.retrofit2:converter-jackson:2.2.0'
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.8"
+
+    // Rx
+    compile 'io.reactivex:rxjava:1.2.10'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxkotlin:1.0.0'
+
     // Test
     testCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
     androidTestCompile 'com.android.support:support-annotations:25.3.1'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
