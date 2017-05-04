@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:tools="http://schemas.android.com/tools"
     package="ru.annin.truckmonitor">
 
     <application
+        android:name=".TruckMonitorApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,7 +13,9 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".TestActivity"
+            android:name=".presentation.ui.activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TruckMonitorTheme.Splash"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
