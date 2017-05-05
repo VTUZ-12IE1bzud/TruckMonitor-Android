@@ -42,7 +42,7 @@ class RestApiRepositoryTest : TestCase() {
     }
 
     @Test
-    fun getogin() {
+    fun testLogin() {
         val subscriber: TestSubscriber<LoginResponse> = TestSubscriber()
 
         val email = "annin@truck.ru"

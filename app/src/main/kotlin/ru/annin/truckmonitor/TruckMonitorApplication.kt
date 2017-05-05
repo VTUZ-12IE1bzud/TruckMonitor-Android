@@ -1,18 +1,12 @@
 package ru.annin.truckmonitor
 
-import android.content.Context
-import android.support.multidex.MultiDex
-import android.support.multidex.MultiDexApplication
+import android.app.Application
 
 /**
  * Класс приложения.
  *
  * @author Pavel Annin.
  */
-class TruckMonitorApplication : MultiDexApplication() {
+class TruckMonitorApplication : Application() {
 
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        MultiDex.install(base)
-    }
 }

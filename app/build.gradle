@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "ru.annin.truckmonitor"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 25
 
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
@@ -22,12 +22,12 @@ android {
 
         resConfigs "en", "ru", "zh"
         vectorDrawables.useSupportLibrary = true
-        multiDexEnabled true
-        testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     productFlavors {
         dev {
+            minSdkVersion 21
             buildConfigField "String", "API_BASE_URL", '"http://192.168.1.2:8080"'
         }
     }
@@ -76,7 +76,6 @@ dependencies  {
 
     // Android Support Library
     compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:multidex:1.0.1'
 
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
