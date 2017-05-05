@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "ru.annin.truckmonitor"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 25
 
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
@@ -28,7 +28,6 @@ android {
 
     productFlavors {
         dev {
-            minSdkVersion 21
             buildConfigField "String", "API_BASE_URL", '"http://192.168.1.2:8080"'
         }
     }
