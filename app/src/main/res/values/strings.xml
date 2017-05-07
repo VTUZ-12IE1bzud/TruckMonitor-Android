@@ -2,5 +2,22 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools" tools:locale="en">
     <!-- Global -->
-    <string name="app_name">TruckMonitor</string>
+    <string name="app_name" translatable="false">TruckMonitor</string>
+
+    <!-- Login -->
+    <string name="login_title">Sign\nIn</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_sign_in_action">Sign In</string>
+
+    <!-- Error Alert -->
+    <string name="alert_error_no_internet_connection_title">No internet connection</string>
+    <string name="alert_error_no_internet_connection_description">Please connect the Internet connection in the system settings.</string>
+    <string name="alert_error_server_not_available_title">Server is not available</string>
+    <string name="alert_error_server_not_available_description">Please try again later.</string>
+    <string name="alert_error_invalid_email_password_title">Authorisation Error</string>
+    <string name="alert_error_invalid_email_password_description">Wrong Email or Password.</string>
+    <string name="alert_error_unknown_title">Unknown error</string>
+    <string name="alert_error_unknown_description">Please report the error to the developers, we will eliminate it in the shortest time.</string>
+    <string name="alert_error_positive">Close</string>
 </resources>

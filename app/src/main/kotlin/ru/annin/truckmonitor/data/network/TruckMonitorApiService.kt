@@ -5,9 +5,9 @@ import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
 import ru.annin.truckmonitor.BuildConfig
+import ru.annin.truckmonitor.data.network.TruckMonitorApiService.service
 import java.util.concurrent.TimeUnit
 
 /**
@@ -42,7 +42,7 @@ object TruckMonitorApiService {
     /** Конфигурация Retrofit. */
     private fun configRetrofit() = Retrofit.Builder().apply {
         baseUrl(SERVER_URL)
-        addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+        addCallAdapterFactory(RxErrorHandlingAdapterFactory())
         addConverterFactory(JacksonConverterFactory.create(ObjectMapper().registerKotlinModule()))
         client(configHttpClient())
     }.build()

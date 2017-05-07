@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ru.annin.truckmonitor">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".TruckMonitorApplication"
@@ -24,6 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".presentation.ui.activity.LoginActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysVisible" />
+
+        <activity
+            android:name=".presentation.ui.activity.MainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
     </application>
 

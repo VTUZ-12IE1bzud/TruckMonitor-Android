@@ -1,16 +1,28 @@
 package ru.annin.truckmonitor.presentation.ui.activity
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import ru.annin.truckmonitor.data.repository.RestApiRepository
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.PresenterType
+import com.arellomobile.mvp.presenter.ProvidePresenter
+import ru.annin.truckmonitor.data.repository.SettingsRepository
+import ru.annin.truckmonitor.presentation.presenter.SplashPresenter
+import ru.annin.truckmonitor.presentation.ui.view.SplashView
 
 /**
  * Экран "Заставка".
  *
  * @author Pavel Annin.
  */
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : MvpAppCompatActivity(), SplashView {
+
+    // Component's
+    @InjectPresenter(type = PresenterType.LOCAL)
+    lateinit var presenter: SplashPresenter
+
+    @ProvidePresenter(type = PresenterType.LOCAL)
+    fun providePresenter() = SplashPresenter(SettingsRepository)
+
+    override fun navigate2Login() = LoginActivity.start(this)
+
+    override fun navigate2Main() = MainActivity.start(this)
 }
