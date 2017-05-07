@@ -22,7 +22,13 @@ class SplashActivity : MvpAppCompatActivity(), SplashView {
     @ProvidePresenter(type = PresenterType.LOCAL)
     fun providePresenter() = SplashPresenter(SettingsRepository)
 
-    override fun navigate2Login() = LoginActivity.start(this)
+    override fun navigate2Login() {
+        LoginActivity.start(this)
+        finish()
+    }
 
-    override fun navigate2Main() = MainActivity.start(this)
+    override fun navigate2Main() {
+        MainActivity.start(this)
+        finish()
+    }
 }
