@@ -19,4 +19,11 @@
     <string name="alert_error_unknown_title">未知错误</string>
     <string name="alert_error_unknown_description">请将错误报告给开发人员，我们将在最短的时间内消除错误。</string>
     <string name="alert_error_positive">关</string>
+
+    <!-- Navigation -->
+    <string name="navigation_home">家</string>
+    <string name="navigation_history">历史</string>
+    <string name="navigation_user_info">信息</string>
+    <string name="navigation_about">关于</string>
+    <string name="navigation_log_out">登出</string>
 </resources>

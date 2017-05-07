@@ -19,4 +19,11 @@
     <string name="alert_error_unknown_title">Неизвестная ошибка</string>
     <string name="alert_error_unknown_description">Пожалуйста сообщите об ошибке разработчикам, мы устраним ее в кратчайшие сроки.</string>
     <string name="alert_error_positive">Закрыть</string>
+
+    <!-- Navigation -->
+    <string name="navigation_home">Текущая</string>
+    <string name="navigation_history">Грузоперевозки</string>
+    <string name="navigation_user_info">О водителе</string>
+    <string name="navigation_about">О приложении</string>
+    <string name="navigation_log_out">Выйти</string>
 </resources>

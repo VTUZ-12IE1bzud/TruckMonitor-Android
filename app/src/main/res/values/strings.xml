@@ -20,4 +20,11 @@
     <string name="alert_error_unknown_title">Unknown error</string>
     <string name="alert_error_unknown_description">Please report the error to the developers, we will eliminate it in the shortest time.</string>
     <string name="alert_error_positive">Close</string>
+
+    <!-- Navigation -->
+    <string name="navigation_home">Home</string>
+    <string name="navigation_history">History</string>
+    <string name="navigation_user_info">Info</string>
+    <string name="navigation_about">About</string>
+    <string name="navigation_log_out">Log out</string>
 </resources>

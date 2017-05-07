@@ -57,7 +57,10 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
         }
     }
 
-    override fun navigate2Main() = MainActivity.start(this)
+    override fun navigate2Main() {
+        MainActivity.start(this)
+        finish()
+    }
 
     override fun toggleValid(isValid: Boolean) = viewDelegate.run {
         this.isValid = isValid
