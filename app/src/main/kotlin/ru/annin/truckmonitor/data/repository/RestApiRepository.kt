@@ -4,6 +4,7 @@ import ru.annin.truckmonitor.data.ApiException
 import ru.annin.truckmonitor.data.InvalidEmailPasswordException
 import ru.annin.truckmonitor.data.network.TruckMonitorApiService
 import ru.annin.truckmonitor.domain.model.LoginResponse
+import ru.annin.truckmonitor.domain.model.UserInfoResponse
 import rx.Observable
 
 /**
@@ -33,4 +34,11 @@ object RestApiRepository {
                 }
                 return@onErrorResumeNext Observable.error(it)
             }
+
+    /**
+     * Информация о пользователе.
+     *
+     * @param token Token пользователя.
+     */
+    fun userInfo(token: String): Observable<UserInfoResponse> = service.userInfo(token)
 }

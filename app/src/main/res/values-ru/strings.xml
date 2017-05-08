@@ -26,4 +26,10 @@
     <string name="navigation_user_info">О водителе</string>
     <string name="navigation_about">О приложении</string>
     <string name="navigation_log_out">Выйти</string>
+
+    <!-- Info -->
+    <string name="info_user_name">Имя:</string>
+    <string name="info_user_birth_date">Дата рождения:</string>
+    <string name="info_user_email">Email:</string>
+    <string name="info_user_phone">Номер телефона:</string>
 </resources>

@@ -33,6 +33,10 @@
             android:name=".presentation.ui.activity.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
+        <activity
+            android:name=".presentation.ui.activity.MeActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
     </application>
 
 </manifest>

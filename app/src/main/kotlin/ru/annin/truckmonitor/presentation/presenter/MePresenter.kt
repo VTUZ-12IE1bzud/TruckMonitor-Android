@@ -3,58 +3,55 @@ package ru.annin.truckmonitor.presentation.presenter
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import ru.annin.truckmonitor.data.repository.KeyStoreRepository
-import ru.annin.truckmonitor.data.repository.SettingsRepository
-import ru.annin.truckmonitor.presentation.ui.view.MainView
+import ru.annin.truckmonitor.data.repository.RestApiRepository
+import ru.annin.truckmonitor.presentation.ui.view.MeView
 import ru.annin.truckmonitor.utils.Analytic
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.lang.kotlin.addTo
-import rx.observables.SyncOnSubscribe
 import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
 
 /**
- * Presenter главного экрана.
+ * Presenter экрана "О водителе".
  *
  * @author Pavel Annin.
  */
 @InjectViewState
-class MainPresenter(private val keyStore: KeyStoreRepository,
-                    private val settingsRepository: SettingsRepository) : MvpPresenter<MainView>() {
+class MePresenter(private val apiRepository: RestApiRepository,
+                  private val keyRepository: KeyStoreRepository) : MvpPresenter<MeView>() {
 
     // Component's
     private val rxSubscription = CompositeSubscription()
+
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        loadUserInfo { viewState.toggleLoad(it) }
+    }
 
     override fun onDestroy() {
         super.onDestroy()
         rxSubscription.unsubscribe()
     }
 
-    /** Открыть информацию о водителе. */
-    fun onUserInfoOpen() = viewState.navigate2Me()
+    /** Перейти назад. */
+    fun onBack() = viewState.navigate2Finish()
 
-    /** Выйти из аккаунта. */
-    fun onLogOut() = logOut { viewState.toggleLoad(it) }
-
-    private fun logOut(load: (Boolean) -> Unit) {
-        load(true)
-        Observable.create(SyncOnSubscribe.createStateless<Void> {
-            keyStore.deleteToken()
-            settingsRepository.clearIsAuth()
-
-            it.onNext(null)
-            it.onCompleted()
-        })
+    /** Загрузить информацию о пользователе. */
+    private fun loadUserInfo(load: (Boolean) -> Unit) {
+        load.invoke(true)
+        Observable.just(keyRepository.token)
+                .flatMap { apiRepository.userInfo(it) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         {
+                            viewState.showUserData(it)
                             load.invoke(false)
-                            viewState.navigate2Login()
                         },
                         {
-                            it?.let { viewState.error(it) }
                             load.invoke(false)
+                            it?.let { viewState.error(it) }
                             Analytic.error(it)
                         }
                 )

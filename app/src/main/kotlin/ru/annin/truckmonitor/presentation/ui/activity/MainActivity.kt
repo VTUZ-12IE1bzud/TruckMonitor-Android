@@ -52,13 +52,15 @@ class MainActivity : MvpAppCompatActivity(), MainView {
                 when(it) {
                     NavigationMenuItem.HOME -> TODO()
                     NavigationMenuItem.HISTORY -> TODO()
-                    NavigationMenuItem.USER_INFO -> TODO()
+                    NavigationMenuItem.USER_INFO -> presenter.onUserInfoOpen()
                     NavigationMenuItem.ABOUT -> TODO()
                     NavigationMenuItem.LOG_OUT -> presenter.onLogOut()
                 }
             }
         }
     }
+
+    override fun navigate2Me() = MeActivity.start(this)
 
     override fun navigate2Login() {
         LoginActivity.start(this)

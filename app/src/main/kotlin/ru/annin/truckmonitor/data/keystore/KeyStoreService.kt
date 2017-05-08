@@ -49,7 +49,7 @@ class KeyStoreService(private val context: Context) {
             val entry: KeyStore.Entry = getEntry(alias, null)
             if (entry is KeyStore.SecretKeyEntry) {
                 val encoded: ByteArray = entry.secretKey.encoded
-                return encoded.toString()
+                return String(encoded)
             }
         }
         return null
