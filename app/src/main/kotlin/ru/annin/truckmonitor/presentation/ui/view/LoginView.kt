@@ -18,5 +18,6 @@ interface LoginView : MvpView {
     /** Изменить состояние индикатор загрузки. */
     fun toggleLoad(isLoad: Boolean)
 
+    /** Оттбразить сообщение об ошибке. */
     fun error(err: Throwable)
 }

@@ -31,7 +31,10 @@ class MainPresenter(private val keyStore: KeyStoreRepository,
     }
 
     /** Выйти из аккаунта. */
-    fun onLogOut() {
+    fun onLogOut() = logOut { viewState.toggleLoad(it) }
+
+    private fun logOut(load: (Boolean) -> Unit) {
+        load(true)
         Observable.create(SyncOnSubscribe.createStateless<Void> {
             keyStore.deleteToken()
             settingsRepository.clearIsAuth()
@@ -42,8 +45,15 @@ class MainPresenter(private val keyStore: KeyStoreRepository,
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { viewState.navigate2Login() },
-                        { Analytic.error(it) }
+                        {
+                            load.invoke(false)
+                            viewState.navigate2Login()
+                        },
+                        {
+                            it?.let { viewState.error(it) }
+                            load.invoke(false)
+                            Analytic.error(it)
+                        }
                 )
                 .addTo(rxSubscription)
     }

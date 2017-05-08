@@ -106,4 +106,10 @@
 
     </android.support.constraint.ConstraintLayout>
 
+    <include
+        android:id="@+id/v_load_indicator"
+        layout="@layout/particle_load"
+        android:fitsSystemWindows="true"
+        android:visibility="gone" />
+
 </android.support.design.widget.CoordinatorLayout>

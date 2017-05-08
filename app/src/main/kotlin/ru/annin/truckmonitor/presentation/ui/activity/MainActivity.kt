@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.DialogFragment
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.view.View
@@ -17,7 +18,9 @@ import ru.annin.truckmonitor.data.repository.SettingsRepository
 import ru.annin.truckmonitor.domain.value.NavigationMenuItem
 import ru.annin.truckmonitor.presentation.common.BaseViewDelegate
 import ru.annin.truckmonitor.presentation.presenter.MainPresenter
+import ru.annin.truckmonitor.presentation.ui.alert.ErrorAlert
 import ru.annin.truckmonitor.presentation.ui.view.MainView
+import ru.annin.truckmonitor.utils.visible
 
 /**
  * Главный экран.
@@ -62,15 +65,29 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         finish()
     }
 
+    override fun toggleLoad(isLoad: Boolean) = viewDelegate.run {
+        this.isLoad = isLoad
+    }
+
+    override fun error(err: Throwable) {
+        var fragment = supportFragmentManager.findFragmentByTag(ErrorAlert.TAG)
+        if (fragment == null) {
+            fragment = ErrorAlert.newInstance(err)
+            (fragment as DialogFragment).show(supportFragmentManager, ErrorAlert.TAG)
+        }
+    }
+
     /**
      * View Delegate главного экрана.
      *
      * @property isNavigationOpen Состояние навигационного меню.
+     * @property isLoad Индикатор загрузки.
      * @property onItemClick Событие, выбран пнукт навигации.
      */
     private class ViewDelegate(vRoot: View) : BaseViewDelegate(vRoot) {
 
         // View's
+        private val vLoad by findView<View>(R.id.v_load_indicator)
         private val vDrawer by findView<DrawerLayout>(R.id.root)
         private val vNavigation by findView<NavigationView>(R.id.v_navigation)
 
@@ -85,6 +102,9 @@ class MainActivity : MvpAppCompatActivity(), MainView {
                     if (value) vDrawer.openDrawer(GravityCompat.START) else vDrawer.closeDrawer(GravityCompat.START)
                 }
             }
+        var isLoad: Boolean
+            get() = vLoad.visible()
+            set(value) = vLoad.visible(value)
 
         // Listener's
         var onItemClick: ((NavigationMenuItem) -> Unit)? = null
