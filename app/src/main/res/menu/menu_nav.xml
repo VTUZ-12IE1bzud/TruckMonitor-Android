@@ -19,7 +19,7 @@
         <item
             android:id="@+id/action_user_info"
             android:icon="@drawable/ic_menu_user_info"
-            android:title="@string/navigation_about" />
+            android:title="@string/navigation_user_info" />
 
         <item
             android:id="@+id/action_about"

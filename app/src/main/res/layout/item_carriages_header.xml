@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/divider"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:padding="@dimen/margin_normal">
+
+    <TextView
+        android:id="@+id/txt_check_point_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/primary_text"
+        android:textStyle="bold"
+        tools:text="01.01.2000 - 02.01.2000" />
+
+</FrameLayout>

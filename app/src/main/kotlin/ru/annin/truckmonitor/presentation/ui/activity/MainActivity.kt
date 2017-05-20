@@ -51,7 +51,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             onItemClick= {
                 when(it) {
                     NavigationMenuItem.HOME -> TODO()
-                    NavigationMenuItem.HISTORY -> TODO()
+                    NavigationMenuItem.HISTORY -> presenter.onHistoryOpen()
                     NavigationMenuItem.USER_INFO -> presenter.onUserInfoOpen()
                     NavigationMenuItem.ABOUT -> TODO()
                     NavigationMenuItem.LOG_OUT -> presenter.onLogOut()
@@ -61,6 +61,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     override fun navigate2Me() = MeActivity.start(this)
+
+    override fun navigate2History() = HistoryActivity.start(this)
 
     override fun navigate2Login() {
         LoginActivity.start(this)

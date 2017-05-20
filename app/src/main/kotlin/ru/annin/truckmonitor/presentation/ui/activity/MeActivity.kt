@@ -100,7 +100,7 @@ class MeActivity : MvpAppCompatActivity(), MeView {
                 value?.run {
                     Glide.with(context).load(photo).bitmapTransform(CropCircleTransformation(context)).crossFade().into(ivUserPhoto)
                     txtUserName.text = "$surname $name $patronymic"
-                    txtUserBirthDate.text = DateFormat.getDateFormat(context).format(birthDate)
+                    birthDate?.let { txtUserBirthDate.text = DateFormat.getDateFormat(context).format(it) }
                     txtUserEmail.text = email
                     txtUserPhone.text = phone
                 }

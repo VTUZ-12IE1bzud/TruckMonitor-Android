@@ -15,6 +15,9 @@ interface MainView : MvpView {
     /** Перейти на экран "Информация о водителе". */
     fun navigate2Me()
 
+    /** Перейти на экран "Информация о грузоперевозках". */
+    fun navigate2History()
+
     /** Изменить состояние индикатор загрузки. */
     fun toggleLoad(isLoad: Boolean)
 

@@ -33,4 +33,9 @@
     <string name="info_user_birth_date">Birth date:</string>
     <string name="info_user_email">Email:</string>
     <string name="info_user_phone">Phone:</string>
+
+    <!-- History -->
+    <string name="history_date_header_format" translatable="false">%1$s - %2$s</string>
+    <string name="history_title_archive">Archive</string>
+    <string name="history_title_onward">Onward</string>
 </resources>

@@ -30,6 +30,9 @@ class MainPresenter(private val keyStore: KeyStoreRepository,
         rxSubscription.unsubscribe()
     }
 
+    /** Открыть информацию о грузоперевозках. */
+    fun onHistoryOpen() = viewState.navigate2History()
+
     /** Открыть информацию о водителе. */
     fun onUserInfoOpen() = viewState.navigate2Me()
 

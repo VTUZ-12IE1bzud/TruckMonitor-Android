@@ -34,6 +34,10 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
+            android:name=".presentation.ui.activity.HistoryActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
             android:name=".presentation.ui.activity.MeActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
