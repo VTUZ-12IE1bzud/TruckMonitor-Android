@@ -16,4 +16,9 @@
     <style name="TruckMonitorTheme.Splash" parent="TruckMonitorTheme.NoActionBar">
         <item name="android:background">@drawable/layer_splash</item>
     </style>
+
+    <style name="TruckMonitorTheme.FullScreen" parent="TruckMonitorTheme.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
 </resources>

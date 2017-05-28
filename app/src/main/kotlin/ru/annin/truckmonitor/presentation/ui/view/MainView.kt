@@ -19,6 +19,9 @@ interface MainView : MvpView {
     /** Перейти на экран "Информация о грузоперевозках". */
     fun navigate2History()
 
+    /** Перейти на экран QrScanner. */
+    fun navigate2QrScanner()
+
     /** Изменить состояние индикатор загрузки. */
     fun toggleLoad(isLoad: Boolean)
 

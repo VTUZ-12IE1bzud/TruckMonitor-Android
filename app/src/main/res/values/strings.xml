@@ -53,4 +53,9 @@
     <string name="detail_contract_nomenclature_amount">Amount: %1$s %2$s</string>
     <string name="detail_contract_nomenclature_packaging">Packaging: %1$s</string>
 
+    <!-- Check Point -->
+    <string name="check_point_planned">Плановое время: %1$s</string>
+    <string name="check_point_fact">Фактическое время: %1$s</string>
+    <string name="check_point_qr_scanner">Отсканировать КТ</string>
+
 </resources>

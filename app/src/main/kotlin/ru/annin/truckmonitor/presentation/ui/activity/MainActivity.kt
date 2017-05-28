@@ -37,6 +37,7 @@ import ru.annin.truckmonitor.utils.visible
 class MainActivity : MvpAppCompatActivity(), MainView {
 
     companion object {
+        private const val REQUEST_CODE_QR_SCANNER = 1
         @JvmStatic fun start(context: Context) {
             val intent = Intent(context, MainActivity::class.java)
             context.startActivity(intent)
@@ -77,6 +78,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         LoginActivity.start(this)
         finish()
     }
+
+    override fun navigate2QrScanner() = QrScannerActivity.start(this, REQUEST_CODE_QR_SCANNER)
 
     override fun toggleLoad(isLoad: Boolean) = viewDelegate.run {
         this.isLoad = isLoad
