@@ -20,6 +20,11 @@
     <string name="alert_error_unknown_description">请将错误报告给开发人员，我们将在最短的时间内消除错误。</string>
     <string name="alert_error_positive">关</string>
 
+    <!-- Main -->
+    <string name="main_tab_info">信息</string>
+    <string name="main_tab_check_point">检查点</string>
+    <string name="main_tab_map">地图</string>
+
     <!-- Navigation -->
     <string name="navigation_home">家</string>
     <string name="navigation_history">历史</string>
@@ -47,5 +52,10 @@
     <string name="detail_contract_nomenclatures">货物组成:</string>
     <string name="detail_contract_nomenclature_amount">量: %1$s %2$s</string>
     <string name="detail_contract_nomenclature_packaging">打包: %1$s</string>
+
+    <!-- Check Point -->
+    <string name="check_point_planned">计划的时间: %1$s</string>
+    <string name="check_point_fact">实际时间: %1$s</string>
+    <string name="check_point_qr_scanner">QR扫描仪</string>
 
 </resources>

@@ -20,6 +20,11 @@
     <string name="alert_error_unknown_description">Пожалуйста сообщите об ошибке разработчикам, мы устраним ее в кратчайшие сроки.</string>
     <string name="alert_error_positive">Закрыть</string>
 
+    <!-- Main -->
+    <string name="main_tab_info">Информация</string>
+    <string name="main_tab_check_point">КТ</string>
+    <string name="main_tab_map">Карта</string>
+
     <!-- Navigation -->
     <string name="navigation_home">Текущая</string>
     <string name="navigation_history">Грузоперевозки</string>
@@ -47,5 +52,10 @@
     <string name="detail_contract_nomenclatures">Состав груза:</string>
     <string name="detail_contract_nomenclature_amount">Количество: %1$s %2$s</string>
     <string name="detail_contract_nomenclature_packaging">Упаковка: %1$s</string>
+
+    <!-- Check Point -->
+    <string name="check_point_planned">Плановое время: %1$s</string>
+    <string name="check_point_fact">Фактическое время: %1$s</string>
+    <string name="check_point_qr_scanner">Отсканировать КТ</string>
 
 </resources>

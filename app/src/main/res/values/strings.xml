@@ -21,6 +21,11 @@
     <string name="alert_error_unknown_description">Please report the error to the developers, we will eliminate it in the shortest time.</string>
     <string name="alert_error_positive">Close</string>
 
+    <!-- Main -->
+    <string name="main_tab_info">Info</string>
+    <string name="main_tab_check_point">Check Points</string>
+    <string name="main_tab_map">Map</string>
+
     <!-- Navigation -->
     <string name="navigation_home">Home</string>
     <string name="navigation_history">History</string>
@@ -54,8 +59,8 @@
     <string name="detail_contract_nomenclature_packaging">Packaging: %1$s</string>
 
     <!-- Check Point -->
-    <string name="check_point_planned">Плановое время: %1$s</string>
-    <string name="check_point_fact">Фактическое время: %1$s</string>
-    <string name="check_point_qr_scanner">Отсканировать КТ</string>
+    <string name="check_point_planned">Scheduled time: %1$s</string>
+    <string name="check_point_fact">Actual time: %1$s</string>
+    <string name="check_point_qr_scanner">QR Scanner</string>
 
 </resources>

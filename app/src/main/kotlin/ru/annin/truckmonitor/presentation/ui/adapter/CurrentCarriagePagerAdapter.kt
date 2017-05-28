@@ -24,9 +24,9 @@ class CurrentCarriagePagerAdapter(private val fm: FragmentManager,
     }
 
     override fun getPageTitle(position: Int) = when (position) {
-        0 -> resource.getString(R.string.history_title_archive)
-        1 -> resource.getString(R.string.history_title_archive)
-        2 -> resource.getString(R.string.history_title_archive)
+        0 -> resource.getString(R.string.main_tab_info)
+        1 -> resource.getString(R.string.main_tab_check_point)
+        2 -> resource.getString(R.string.main_tab_map)
         else -> TODO()
     }
 

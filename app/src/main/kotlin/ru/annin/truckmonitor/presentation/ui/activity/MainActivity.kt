@@ -141,6 +141,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         var onItemClick: ((NavigationMenuItem) -> Unit)? = null
 
         init {
+            vTab.setupWithViewPager(cntPages)
             cntPages.run {
                 adapter = carriageAdapter
             }
