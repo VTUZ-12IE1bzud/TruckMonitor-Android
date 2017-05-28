@@ -100,11 +100,13 @@ data class CheckPoints(@JsonProperty(value = "id", required = true) val id: Long
         }
     // Properties
     val factDate: Date?
-        get() = try {
-            ISO8601Utils.parse(fact, ParsePosition(0))
-        } catch (err: Exception) {
-            Analytic.error(err)
-            null
+        get() = fact?.let {
+            try {
+                ISO8601Utils.parse(fact, ParsePosition(0))
+            } catch (err: Exception) {
+                Analytic.error(err)
+                null
+            }
         }
 }
 
