@@ -4,9 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.design.widget.TabLayout
 import android.support.v4.app.DialogFragment
+import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
+import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
+import android.support.v7.widget.Toolbar
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -14,10 +18,13 @@ import com.arellomobile.mvp.presenter.PresenterType
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import ru.annin.truckmonitor.R
 import ru.annin.truckmonitor.data.repository.KeyStoreRepository
+import ru.annin.truckmonitor.data.repository.RestApiRepository
 import ru.annin.truckmonitor.data.repository.SettingsRepository
+import ru.annin.truckmonitor.domain.model.CurrentCarriageResponse
 import ru.annin.truckmonitor.domain.value.NavigationMenuItem
 import ru.annin.truckmonitor.presentation.common.BaseViewDelegate
 import ru.annin.truckmonitor.presentation.presenter.MainPresenter
+import ru.annin.truckmonitor.presentation.ui.adapter.CurrentCarriagePagerAdapter
 import ru.annin.truckmonitor.presentation.ui.alert.ErrorAlert
 import ru.annin.truckmonitor.presentation.ui.view.MainView
 import ru.annin.truckmonitor.utils.visible
@@ -42,15 +49,17 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     private lateinit var viewDelegate: ViewDelegate
 
     @ProvidePresenter(type = PresenterType.LOCAL)
-    fun providePresenter() = MainPresenter(KeyStoreRepository, SettingsRepository)
+    fun providePresenter() = MainPresenter(RestApiRepository, KeyStoreRepository, SettingsRepository)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewDelegate = ViewDelegate(findViewById(R.id.root)).apply {
-            onItemClick= {
-                when(it) {
-                    NavigationMenuItem.HOME -> TODO()
+        viewDelegate = ViewDelegate(findViewById(R.id.root), supportFragmentManager).apply {
+            onItemClick = {
+                when (it) {
+                    NavigationMenuItem.HOME -> {
+                        /** Текущий экран. */
+                    }
                     NavigationMenuItem.HISTORY -> presenter.onHistoryOpen()
                     NavigationMenuItem.USER_INFO -> presenter.onUserInfoOpen()
                     NavigationMenuItem.ABOUT -> TODO()
@@ -81,6 +90,10 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         }
     }
 
+    override fun showCarriage(data: CurrentCarriageResponse) = viewDelegate.run {
+        currentCarriage = data
+    }
+
     /**
      * View Delegate главного экрана.
      *
@@ -88,12 +101,18 @@ class MainActivity : MvpAppCompatActivity(), MainView {
      * @property isLoad Индикатор загрузки.
      * @property onItemClick Событие, выбран пнукт навигации.
      */
-    private class ViewDelegate(vRoot: View) : BaseViewDelegate(vRoot) {
+    private class ViewDelegate(vRoot: View, private val fm: FragmentManager) : BaseViewDelegate(vRoot) {
 
         // View's
         private val vLoad by findView<View>(R.id.v_load_indicator)
         private val vDrawer by findView<DrawerLayout>(R.id.root)
         private val vNavigation by findView<NavigationView>(R.id.v_navigation)
+        private val vToolbar by findView<Toolbar>(R.id.v_toolbar)
+        private val vTab by findView<TabLayout>(R.id.v_tab)
+        private val cntPages by findView<ViewPager>(R.id.cnt_pager)
+
+        // Adapter's
+        private val carriageAdapter by lazy { CurrentCarriagePagerAdapter(fm, resource) }
 
         // Data's
         private var tempSelectItem: NavigationMenuItem? = null
@@ -109,11 +128,20 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         var isLoad: Boolean
             get() = vLoad.visible()
             set(value) = vLoad.visible(value)
+        var currentCarriage: CurrentCarriageResponse? = null
+            set(value) = carriageAdapter.run {
+                currentCarriage = value
+                notifyDataSetChanged()
+            }
 
         // Listener's
         var onItemClick: ((NavigationMenuItem) -> Unit)? = null
 
         init {
+            cntPages.run {
+                adapter = carriageAdapter
+            }
+
             // Listener's
             vDrawer.addDrawerListener(object : DrawerLayout.DrawerListener {
                 override fun onDrawerStateChanged(newState: Int) {
@@ -145,6 +173,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
                 isNavigationOpen = false
                 return@setNavigationItemSelectedListener true
             }
+            vToolbar.setNavigationOnClickListener { isNavigationOpen = true }
         }
     }
 }

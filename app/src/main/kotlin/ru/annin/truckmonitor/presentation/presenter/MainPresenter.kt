@@ -3,6 +3,7 @@ package ru.annin.truckmonitor.presentation.presenter
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import ru.annin.truckmonitor.data.repository.KeyStoreRepository
+import ru.annin.truckmonitor.data.repository.RestApiRepository
 import ru.annin.truckmonitor.data.repository.SettingsRepository
 import ru.annin.truckmonitor.presentation.ui.view.MainView
 import ru.annin.truckmonitor.utils.Analytic
@@ -19,11 +20,17 @@ import rx.subscriptions.CompositeSubscription
  * @author Pavel Annin.
  */
 @InjectViewState
-class MainPresenter(private val keyStore: KeyStoreRepository,
+class MainPresenter(private val apiRepository: RestApiRepository,
+                    private val keyStore: KeyStoreRepository,
                     private val settingsRepository: SettingsRepository) : MvpPresenter<MainView>() {
 
     // Component's
     private val rxSubscription = CompositeSubscription()
+
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        loadCurrentCarriage { viewState.toggleLoad(it) }
+    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -39,6 +46,27 @@ class MainPresenter(private val keyStore: KeyStoreRepository,
     /** Выйти из аккаунта. */
     fun onLogOut() = logOut { viewState.toggleLoad(it) }
 
+    private fun loadCurrentCarriage(load: (Boolean) -> Unit) {
+        load(true)
+        Observable.just(keyStore.token)
+                .flatMap { apiRepository.currentCarriage(it) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            viewState.showCarriage(it)
+                            load.invoke(false)
+                        },
+                        {
+                            it?.let { viewState.error(it) }
+                            Analytic.error(it)
+                            load.invoke(false)
+                        }
+                )
+                .addTo(rxSubscription)
+    }
+
+    /** Выйти. */
     private fun logOut(load: (Boolean) -> Unit) {
         load(true)
         Observable.create(SyncOnSubscribe.createStateless<Void> {

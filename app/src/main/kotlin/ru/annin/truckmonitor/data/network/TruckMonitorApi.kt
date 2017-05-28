@@ -4,6 +4,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
 import ru.annin.truckmonitor.domain.model.CarriageResponse
+import ru.annin.truckmonitor.domain.model.CurrentCarriageResponse
 import ru.annin.truckmonitor.domain.model.LoginResponse
 import ru.annin.truckmonitor.domain.model.UserInfoResponse
 import rx.Observable
@@ -24,6 +25,9 @@ interface TruckMonitorApi {
     @GET("/api/v1/login")
     fun login(@Query("email") email: String,
               @Query("password") password: String): Observable<LoginResponse>
+
+    @GET("/api/v1/carriage/current")
+    fun currentCarriage(@Header("X-AUTH-TOKEN") token: String): Observable<CurrentCarriageResponse>
 
     /**
      * Информация о архивных грузоперевозках.

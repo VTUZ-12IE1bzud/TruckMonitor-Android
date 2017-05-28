@@ -36,6 +36,13 @@ object RestApiRepository {
             }
 
     /**
+     * Информация о текущей грузоперевозке.
+     *
+     * @param token Token пользователя.
+     */
+    fun currentCarriage(token: String) = service.currentCarriage(token)
+
+    /**
      * Информация о архивных грузоперевозках.
      *
      * @param token Token пользователя.

@@ -38,4 +38,19 @@
     <string name="history_date_header_format" translatable="false">%1$s - %2$s</string>
     <string name="history_title_archive">Archive</string>
     <string name="history_title_onward">Onward</string>
+
+    <!-- Contracts -->
+    <string name="contract_stores_format" translatable="false">%1$s - %2$s</string>
+
+    <!-- Detail Contract -->
+    <string name="detail_contract_title">Detail contract</string>
+    <string name="detail_contract_contract_number_format">Contract number: %1$s</string>
+    <string name="detail_contract_store_before">Point of departure:</string>
+    <string name="detail_contract_store_from">Destination:</string>
+    <string name="detail_contract_manager">Manager:</string>
+    <string name="detail_contract_customs_link">Customs declarations:</string>
+    <string name="detail_contract_nomenclatures">Cargo composition:</string>
+    <string name="detail_contract_nomenclature_amount">Amount: %1$s %2$s</string>
+    <string name="detail_contract_nomenclature_packaging">Packaging: %1$s</string>
+
 </resources>

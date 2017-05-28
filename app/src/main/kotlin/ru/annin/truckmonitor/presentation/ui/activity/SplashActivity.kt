@@ -1,5 +1,6 @@
 package ru.annin.truckmonitor.presentation.ui.activity
 
+import android.os.Bundle
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
@@ -21,6 +22,10 @@ class SplashActivity : MvpAppCompatActivity(), SplashView {
 
     @ProvidePresenter(type = PresenterType.LOCAL)
     fun providePresenter() = SplashPresenter(SettingsRepository)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun navigate2Login() {
         LoginActivity.start(this)

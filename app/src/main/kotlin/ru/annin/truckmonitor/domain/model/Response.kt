@@ -21,6 +21,17 @@ import java.util.*
 data class LoginResponse(@JsonProperty(value = "token", required = true) val token: String) : Serializable
 
 /**
+ * Модель данных "Текущая грузоперевозка".
+ *
+ * @param id Идентификатор.
+ * @param carriages Детализация грузоперевозки.
+ * @param checkPoints Контрольнаы точки.
+ */
+data class CurrentCarriageResponse(@JsonProperty(value = "id", required = true) val id: Long,
+                                   @JsonProperty(value = "carriages", required = true) val carriages: List<DetailCarriageResponse>,
+                                   @JsonProperty(value = "checkPoints", required = true) val checkPoints: List<CheckPoints>) : Serializable
+
+/**
  * Модель данных "Грузоперевозок".
  *
  * @param id Идентификатор.
@@ -105,3 +116,61 @@ data class CheckPoints(@JsonProperty(value = "id", required = true) val id: Long
  */
 data class CoordinateResponse(@JsonProperty(value = "latitude", required = true) val latitude: Float,
                               @JsonProperty(value = "longitude", required = true) val longitude: Float) : Serializable
+
+/**
+ * Модель данных "Детализация грузоперевозки.".
+ *
+ * @param contract Контракт.
+ * @param nomenclatures Номерклатура.
+ */
+data class DetailCarriageResponse(@JsonProperty(value = "contract", required = true) val contract: ContractResponse,
+                                  @JsonProperty(value = "nomenclatures", required = true) val nomenclatures: List<NomenclatureResponse>) : Serializable
+
+/**
+ * Модель данных "Контракт".
+ *
+ * @param number Номер.
+ * @param customsLink Ссылка на таможенную дикларацию.
+ * @param from Склад загрузки.
+ * @param before Склад разгрузки.
+ * @param packaging Упаковка.
+ * @param manager Менеджер.
+ */
+data class ContractResponse(@JsonProperty(value = "number", required = true) val number: String,
+                            @JsonProperty(value = "customsLink", required = true) val customsLink: String,
+                            @JsonProperty(value = "from", required = true) val from: StoreResponse,
+                            @JsonProperty(value = "before", required = true) val before: StoreResponse,
+                            @JsonProperty(value = "packaging", required = true) val packaging: String,
+                            @JsonProperty(value = "manager", required = true) val manager: ManagerResponse) : Serializable
+
+/**
+ * Модель данных "Склад".
+ *
+ * @param name Наименвоание.
+ * @param address Адрес.
+ */
+data class StoreResponse(@JsonProperty(value = "name", required = true) val name: String,
+                         @JsonProperty(value = "address", required = true) val address: String) : Serializable
+
+
+/**
+ * Модель данных "Номенклатуры".
+ *
+ * @param name Наименвоание.
+ * @param amount Количество.
+ * @param measure Единица измерения.
+ */
+data class NomenclatureResponse(@JsonProperty(value = "name", required = true) val name: String,
+                                @JsonProperty(value = "amount", required = true) val amount: Float,
+                                @JsonProperty(value = "measure", required = true) val measure: String) : Serializable
+
+/**
+ * Модель данных "Менеджер".
+ *
+ * @param name Имя менеджера.
+ * @param photolink Фотография менеджера.
+ * @param phone Номер телефона.
+ */
+data class ManagerResponse(@JsonProperty(value = "name", required = true) val name: String,
+                           @JsonProperty(value = "photolink", required = true) val photolink: String,
+                           @JsonProperty(value = "phone", required = true) val phone: String) : Serializable

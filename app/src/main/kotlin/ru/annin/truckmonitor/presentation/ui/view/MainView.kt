@@ -1,6 +1,7 @@
 package ru.annin.truckmonitor.presentation.ui.view
 
 import com.arellomobile.mvp.MvpView
+import ru.annin.truckmonitor.domain.model.CurrentCarriageResponse
 
 /**
  * Интерфейс представления главного экрана.
@@ -23,4 +24,7 @@ interface MainView : MvpView {
 
     /** Оттбразить сообщение об ошибке. */
     fun error(err: Throwable)
+
+    /** Отобразить текущую грузоперевозку. */
+    fun showCarriage(data: CurrentCarriageResponse)
 }

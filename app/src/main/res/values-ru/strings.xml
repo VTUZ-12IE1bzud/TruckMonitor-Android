@@ -32,4 +32,20 @@
     <string name="info_user_birth_date">Дата рождения:</string>
     <string name="info_user_email">Email:</string>
     <string name="info_user_phone">Номер телефона:</string>
+
+    <!-- History -->
+    <string name="history_title_archive">Архивные</string>
+    <string name="history_title_onward">Будущие</string>
+
+    <!-- Detail Contract -->
+    <string name="detail_contract_title">Договор</string>
+    <string name="detail_contract_contract_number_format">Номер договора: %1$s</string>
+    <string name="detail_contract_store_before">Пункт отправления:</string>
+    <string name="detail_contract_store_from">Пункт назначения:</string>
+    <string name="detail_contract_manager">Менеджер:</string>
+    <string name="detail_contract_customs_link">Таможенные декларации:</string>
+    <string name="detail_contract_nomenclatures">Состав груза:</string>
+    <string name="detail_contract_nomenclature_amount">Количество: %1$s %2$s</string>
+    <string name="detail_contract_nomenclature_packaging">Упаковка: %1$s</string>
+
 </resources>

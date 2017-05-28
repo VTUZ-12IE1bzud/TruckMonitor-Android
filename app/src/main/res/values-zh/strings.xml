@@ -32,4 +32,20 @@
     <string name="info_user_birth_date">生日：</string>
     <string name="info_user_email">电子邮件：</string>
     <string name="info_user_phone">电话：</string>
+
+    <!-- History -->
+    <string name="history_title_archive">档案</string>
+    <string name="history_title_onward">向前</string>
+
+    <!-- Detail Contract -->
+    <string name="detail_contract_title">详细合同</string>
+    <string name="detail_contract_contract_number_format">合同号码: %1$s</string>
+    <string name="detail_contract_store_before">出发点:</string>
+    <string name="detail_contract_store_from">目的地:</string>
+    <string name="detail_contract_manager">经理:</string>
+    <string name="detail_contract_customs_link">海关申报:</string>
+    <string name="detail_contract_nomenclatures">货物组成:</string>
+    <string name="detail_contract_nomenclature_amount">量: %1$s %2$s</string>
+    <string name="detail_contract_nomenclature_packaging">打包: %1$s</string>
+
 </resources>
